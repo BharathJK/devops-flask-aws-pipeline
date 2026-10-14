@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    environment {
+        AWS_REGION = 'us-east-1'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Test App') {
+            steps {
+                sh 'python3 -m unittest discover -s app'
+            }
+        }
+        stage('Terraform Init & Plan') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+    }
+}

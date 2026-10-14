@@ -1,0 +1,4 @@
+aws_region   = "us-east-1"
+db_name      = "devops_db"
+db_user      = "admin"
+db_password  = "CHANGE_ME_IN_LOCAL_TFVARS"
